@@ -1,12 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {ModuleFederationPlugin} = require('webpack').container;
+const { ModuleFederationPlugin } = require('webpack').container;
 
 module.exports = {
     mode: 'development',
     devtool: 'eval-source-map',
     entry: path.resolve(__dirname, 'src', 'index.jsx'),
-    output:{
+    output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: 'http://localhost:9003/',
@@ -15,7 +15,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, 'public'),
         },
-        port: 9003, 
+        port: 9003,
         historyApiFallback: true
     },
     resolve: {
@@ -26,14 +26,14 @@ module.exports = {
             name: 'detalhes',
             filename: 'remoteEntry.js',
             exposes: {
-                './DetalheClientesApp' : path.resolve(__dirname, 'src', 'components', 'DetalheClientes'),
+                './DetalheClientesApp': path.resolve(__dirname, 'src', 'components', 'DetalheClientes'),
             },
             shared: {
                 react: {
                     singleton: true,
                     requiredVersion: "^18.1.0"
                 },
-                "react-dom":{
+                "react-dom": {
                     singleton: true,
                     requiredVersion: "^18.1.0"
                 }
