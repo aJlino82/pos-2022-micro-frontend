@@ -13,6 +13,9 @@ export function NavBar(){
                 <NavItem>
                     <Link className="nav-item" to="/cadastrar">Cadastrar</Link>
                 </NavItem>
+                <NavItem>
+                    <Link className="nav-item" to="/detalhes">Detalhes</Link>
+                </NavItem>
             </Nav>
         </Navbar>
     );
