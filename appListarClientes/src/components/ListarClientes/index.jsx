@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { api } from "../../services/api";
 
-export default function ListarClientes(){
+export default function ListarClientes() {
 
     const [clientes, setClientes] = useState([]);
 
-    useEffect(()=>{
-        getData();
-    },[]);
 
-    async function getData(){
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    async function getData() {
         const response = await api.get('/clientes');
         setClientes(response.data);
     }
 
-    return(
+    return (
         <Table striped bordered>
             <thead>
                 <tr>
@@ -25,11 +27,12 @@ export default function ListarClientes(){
                     <th scope="col">Altura</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">IMC</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 {clientes.map(cliente => {
-                    return(
+                    return (
                         <tr key={cliente.id}>
                             <td>{cliente.id}</td>
                             <td>{cliente.nome}</td>
@@ -37,6 +40,7 @@ export default function ListarClientes(){
                             <td>{cliente.altura}</td>
                             <td>{cliente.sexo}</td>
                             <td>{cliente.imc.toFixed(2)}</td>
+                            <td><button onClick={() => navigate(`/detalhes/${cliente.id}`)}>Visualizar</button></td>
                         </tr>
                     );
                 })}

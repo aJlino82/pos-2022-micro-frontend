@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { api } from "../../services/api";
 
-export default function DetalheClientes(props){
+export default function DetalheClientes(props) {
     const [cliente, setCliente] = useState({});
 
-    useEffect(()=>{
+    useEffect(() => {
         getData();
-    },[]);
+    }, []);
 
-    async function getData(){
-        const id = window.location.pathname.split('/').slice(-1);
+    async function getData() {
+        let id = window.location.pathname.split('/').slice(-1);
+        //let id = 3;
         const response = await api.get(`/clientes/${id}`)
         setCliente(response.data);
     }
 
-    return(
+    return (
         <ul style={{ listStyle: 'none' }}>
             <li><b>ID:</b> {cliente.id}</li>
             <li><b>Nome:</b> {cliente.nome}</li>
